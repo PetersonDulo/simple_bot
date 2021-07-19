@@ -1,0 +1,22 @@
+{
+  "name": "simple_bot",
+  "version": "1.0.0",
+  "description": "Trading Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Mandombe",
+  "license": "ISC",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "moment-timezone": "^0.5.33",
+    "numeral": "^2.0.6",
+    "web3": "^1.4.0",
+    "web3-providers-http": "^1.4.0"
+  }
+}
