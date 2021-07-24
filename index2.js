@@ -39,7 +39,7 @@ const provider = new Web3HttpProvider('http://localhost:8545', options);
     providerOrUrl: "http://localhost:8545"
 });*/
 //let provider = new HDWalletProvider(process.env.MNEMONIC, "http://localhost:8545");
-const web3 = new Web3(new Web3.providers.WebsocketProvider('ws://192.168.0.101:7545'))
+const web3 = new Web3(new Web3.providers.WebsocketProvider('ws://192.168.0.101:8545'))
 //const web3 = new Web3(new Web3.providers.WebsocketProvider('ws://192.168.43.176:7545'))
 
 
@@ -48,27 +48,27 @@ async function net(){
 }
 //const networkId = net();
 //const deployedNetwork = Swap.networks[networkId];
-const EXCHANGE_ADDRESS = '0xa58252F181a4A703ef0684aA6161A3fB571DE195';
+const EXCHANGE_ADDRESS = '0x3Dc315Db39A536F7221320725398DdE35C1b0EaE';
 const exchangeContract = new web3.eth.Contract(Swap.abi, EXCHANGE_ADDRESS, {
-    from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+    from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
 });
 //const deployedNetwork = Swap.networks[networkId];
-const C1_ADDRESS = '0xBbA50782e4d1066A865F67e2Bb8B60Bf1959fE85';
+const C1_ADDRESS = '0x8AFF144cE11a6c1A4D5172c69AcE7e18Aac51665';
 const c1_Contract = new web3.eth.Contract(Swap.abi, C1_ADDRESS, {
-    from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+    from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
 });
 //const deployedNetwork = Swap.networks[networkId];
-const C2_ADDRESS = '0xC0b74357d95fA3e899F1dc1f4d8f3895BfAcE851';
+const C2_ADDRESS = '0xc0Ed926B7D95C5d51661678c8b0e2ec3206b7d6a';
 const c2_Contract = new web3.eth.Contract(Swap.abi, C2_ADDRESS, {
-    from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+    from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
 });
 //const deployedNetwork = Swap.networks[networkId];
-const C3_ADDRESS = '0x23212a6B2378dA11A18Fc06a1a7AB9D595c26638';
+const C3_ADDRESS = '0x4fa5615cF8A8563F6d8B7AB7cC05E839D2518141';
 const c3_Contract = new web3.eth.Contract(Swap.abi, C3_ADDRESS, {
-    from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+    from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
     gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
 });
 console.log(web3.eth.net.getId()
@@ -114,23 +114,23 @@ async function setMinPrice() {
 
 let a = async () => {
     console.log(111);
-    /*await exchangeContract.methods.signUp(100002374, 'Petelson Dulo').send({
-        from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+    await exchangeContract.methods.signUp(100002374, 'Petelson Dulo').send({
+        from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
         gas: 6721975,
         gasPrice: 20000000000
-    });*/
+    });
     await c1_Contract.methods.approve(EXCHANGE_ADDRESS, web3.utils.toWei('2000')).send({
-        from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+        from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
         gas: 6721975,
         gasPrice: 20000000000
     });
     await c2_Contract.methods.approve(EXCHANGE_ADDRESS, web3.utils.toWei('2000')).send({
-        from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+        from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
         gas: 6721975,
         gasPrice: 20000000000
     });
     await c3_Contract.methods.approve(EXCHANGE_ADDRESS, web3.utils.toWei('2000')).send({
-        from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+        from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
         gas: 6721975,
         gasPrice: 20000000000
     });
@@ -138,15 +138,15 @@ let a = async () => {
 
 a()
 async function hello() {
-    let symbol1 = await exchangeContract.methods.priceCoin(C1_ADDRESS, C3_ADDRESS).call();
-    await exchangeContract.methods.swap(C1_ADDRESS, C3_ADDRESS, web3.utils.toWei('5')).send({
-        from: '0xD605F3Ab23699AC513464B3a710fF3b8c58fb474', // default from address
+    let symbol1 = await exchangeContract.methods.priceCoin(C1_ADDRESS, C2_ADDRESS).call();
+    await exchangeContract.methods.swap(C3_ADDRESS, C1_ADDRESS, web3.utils.toWei('5')).send({
+        from: '0x1c1988Ecc133b8A518AEA2a3C8Fccc5D181FB0b3', // default from address
         gas: 6721975,
         gasPrice: 20000000000
     });
     console.log(web3.currentProvider.connected, 'Hello!W', symbol1, matrix);
 }
 // Check markets every n seconds
-    const POLLING_INTERVAL = process.env.POLLING_INTERVAL || 1000 // 1 Second
+    const POLLING_INTERVAL = process.env.POLLING_INTERVAL || 2000 // 1 Second
     priceMonitor = setInterval(async () => { await hello() }, POLLING_INTERVAL)
 //priceMonitor = setInterval(async () => { await monitorPrice() }, POLLING_INTERVAL)
