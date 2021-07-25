@@ -1,2 +1,2 @@
-# SimplesBot
-# simple_bot
+# Simples Bot
+ "exemplo de como configurar o bot"
